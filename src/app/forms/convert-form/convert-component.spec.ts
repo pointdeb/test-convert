@@ -31,6 +31,7 @@ describe('AppConvertFormComponent', () => {
         const currentChange = component.changeRate();
         tick(3000);
         fixture.detectChanges();
+        // TODO: why this is not working anymore
         // expect(currentChange).not.toEqual(component.changeRate());
     }))
 

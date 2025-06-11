@@ -9,9 +9,9 @@ RUN npm i -g npm@latest; npm i -g @angular/cli@~19 nodemon
 
 WORKDIR /var/www
 
-# COPY package.json package-lock.json ./
+COPY package.json package-lock.json ./
 
-# RUN npm install
+RUN npm install
 
 COPY . .
 
@@ -19,7 +19,7 @@ COPY . .
 USER 1000:1000
 
 # RUN npm run test
-# RUN npm run build
+RUN npm run build
 
 CMD [ "bash", "./start.sh" ]
 
