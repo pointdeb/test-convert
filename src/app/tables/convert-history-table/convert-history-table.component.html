@@ -1,0 +1,22 @@
+<table mat-table [dataSource]="items" class=" mat-elevation-z8">
+    <ng-container matColumnDef="changeRate">
+        <th mat-header-cell *matHeaderCellDef> Rate </th>
+        <td mat-cell *matCellDef="let element"> {{element.changeRate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="manual">
+        <th mat-header-cell *matHeaderCellDef> Manual </th>
+        <td mat-cell *matCellDef="let element"><mat-checkbox [checked]="element.manual" [disabled]="true" />
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fromAmount">
+        <th mat-header-cell *matHeaderCellDef> From </th>
+        <td mat-cell *matCellDef="let element"> {{element.fromAmount | currency: element.fromCurrency}} </td>
+    </ng-container>
+    <ng-container matColumnDef="toAmount">
+        <th mat-header-cell *matHeaderCellDef> To </th>
+        <td mat-cell *matCellDef="let element"> {{element.toAmount | currency: element.toCurrency}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

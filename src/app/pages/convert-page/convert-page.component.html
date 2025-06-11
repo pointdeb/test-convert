@@ -1,1 +1,2 @@
-<app-convert-form></app-convert-form>
+<app-convert-form (valueChange)="handleSubmit($event)"></app-convert-form>
+<app-convert-history-table [items]="convertStore.convertions()"></app-convert-history-table>
