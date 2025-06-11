@@ -1,3 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-image: url(./assets/bg.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    padding: 16px;
+    border-radius: 8px;
+    max-width: 550px;
+    position: relative;
+    margin: 10px auto;
+    border: 1px solid gray;
+    background-color: white;
+}

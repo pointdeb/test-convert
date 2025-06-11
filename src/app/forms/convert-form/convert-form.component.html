@@ -1,21 +1,38 @@
 <form [formGroup]="formGroup" (submit)="handleSubmit()">
-    <select formControlName="fromCurrency">
-        @for (currency of currencies; track $index) {
-        <option [value]="currency">{{currency}}</option>
-        }
-    </select>
-    <input type="number" formControlName="fromAmount" min="0" />
-    <button type="button" (click)="handleSwitch()" id="switcher">
-        <>
-    </button>
-    <select formControlName="toCurrency">
-        @for (currency of currencies; track $index) {
-        <option [value]="currency">{{currency}}</option>
-        }
-    </select>
-    <input type="number" formControlName="toAmount" min="0" />
-    <input type="checkbox" formControlName="manual" />
-    <input type="number" formControlName="changeRate" min="0" />
-    <br />
-    <button type="submit">Convert</button>
+    <div class="form-group">
+        <mat-form-field class="currency">
+            <mat-label>From</mat-label>
+            <mat-select formControlName="fromCurrency">
+                @for (currency of currencies; track $index) {
+                <mat-option [value]="currency">{{currency}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="amount">
+            <mat-label>Amount</mat-label>
+            <input matInput type="text" formControlName="fromAmount" min="0" placeholder="Ex. 1000">
+        </mat-form-field>
+        <button mat-mini-fab type="button" color="secondary" (click)="handleSwitch()"
+            id="switcher"><mat-icon>swap_horiz</mat-icon></button>
+        <mat-form-field class="currency">
+            <mat-label>To</mat-label>
+            <mat-select formControlName="toCurrency">
+                @for (currency of currencies; track $index) {
+                <mat-option [value]="currency">{{currency}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="amount">
+            <mat-label>Result</mat-label>
+            <input matInput type="text" formControlName="toAmount" min="0">
+        </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-checkbox formControlName="manual" aria-label="Switch to manual" matTooltip="Switch to manual rate" />
+        <mat-form-field>
+            <mat-label>Rate</mat-label>
+            <input matInput type="text" formControlName="changeRate" min="0" placeholder="Ex. 1.2">
+        </mat-form-field>
+        <button type="submit" mat-raised-button>Convert</button>
+    </div>
 </form>

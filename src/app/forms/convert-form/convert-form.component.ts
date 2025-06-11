@@ -2,10 +2,17 @@ import { Component, EventEmitter, inject, Input, Output, signal } from '@angular
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { interval, Subscription, tap } from 'rxjs';
 import { Convert, Currency, DEFAULT_CHANGE_RATE } from '../../models';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatIcon } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-convert-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatIcon, MatButtonModule, MatCheckboxModule, MatTooltip],
   templateUrl: './convert-form.component.html',
   styleUrl: './convert-form.component.scss'
 })
@@ -29,8 +36,9 @@ export class ConvertFormComponent {
     tap((v) => {
       if (!this.formGroup.value.manual) {
         this.changeRate.set(
-          this.changeRate() + (Math.random() * 0.1 - 0.05)
+          this.round(this.changeRate() + (Math.random() * 0.1 - 0.05))
         );
+        this.formGroup.patchValue({ changeRate: this.changeRate() })
       }
     })
   );
@@ -64,7 +72,7 @@ export class ConvertFormComponent {
 
   handleSwitch() {
     const value = this.formGroup.getRawValue();
-    this.changeRate.set(1 / this.changeRate());
+    this.changeRate.set(this.round(1 / this.changeRate()));
     this.formGroup.patchValue({
       changeRate: this.changeRate(),
       fromCurrency: value.toCurrency,
@@ -106,6 +114,11 @@ export class ConvertFormComponent {
   }
 
   private computeResult(from: number, rate: number) {
-    return from * rate;
+    return this.round(from * rate);
   }
+
+  private round(entry: number, digit = 3) {
+    return parseFloat(entry.toFixed(digit));
+  }
+
 }

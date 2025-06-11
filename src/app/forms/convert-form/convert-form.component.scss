@@ -1,0 +1,16 @@
+input {
+    width: 100px;
+}
+
+.currency {
+    max-width: 100px;
+}
+
+.amount {
+    max-width: 150px;
+}
+
+[type=submit] {
+    margin-bottom: 16px;
+    margin-left: 16px;
+}

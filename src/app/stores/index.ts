@@ -22,7 +22,7 @@ export const convertStore = signalStore(
             if (current.length == 5) {
                 current.pop()
             }
-            patchState(store, { convertions: [...current, payload] })
+            patchState(store, { convertions: [payload, ...current] })
         }
     }))
 );
