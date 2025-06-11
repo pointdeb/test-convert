@@ -21,4 +21,8 @@ npm start
 npm run test
 ```
 
-![Result](./demo.png)
+![Result](./docs/demo.png)
+
+### MOCKUP
+
+![Result](./docs/mockup.jpg)
