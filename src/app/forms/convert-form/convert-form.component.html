@@ -1,0 +1,21 @@
+<form [formGroup]="formGroup" (submit)="handleSubmit()">
+    <select formControlName="fromCurrency">
+        @for (currency of currencies; track $index) {
+        <option [value]="currency">{{currency}}</option>
+        }
+    </select>
+    <input type="number" formControlName="fromAmount" min="0" />
+    <button type="button" (click)="handleSwitch()" id="switcher">
+        <>
+    </button>
+    <select formControlName="toCurrency">
+        @for (currency of currencies; track $index) {
+        <option [value]="currency">{{currency}}</option>
+        }
+    </select>
+    <input type="number" formControlName="toAmount" min="0" />
+    <input type="checkbox" formControlName="manual" />
+    <input type="number" formControlName="changeRate" min="0" />
+    <br />
+    <button type="submit">Convert</button>
+</form>
