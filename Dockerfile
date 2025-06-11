@@ -18,7 +18,7 @@ COPY . .
 
 USER 1000:1000
 
-# RUN npm run test
+RUN npm run test
 RUN npm run build
 
 CMD [ "bash", "./start.sh" ]
